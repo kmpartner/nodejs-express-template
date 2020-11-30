@@ -7,6 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     name: build example and deploy to minikbue
     steps:
+    - name: set environment variable
+      run: |
+        export ACTIONS_ALLOW_UNSECURE_COMMANDS=true
     - uses: actions/checkout@v2
     - name: Start minikube
       uses: medyagh/setup-minikube@master
