@@ -1,0 +1,15 @@
+node_modules/
+npm-debug.log
+Dockerfile
+# .dockerignore
+# .git
+
+# .gitignore
+.env
+*.yaml
+*.yml
+
+README.md
+# images
+images-temporary
+k8s-files
