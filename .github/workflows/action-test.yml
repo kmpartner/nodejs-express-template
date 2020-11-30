@@ -1,0 +1,35 @@
+name: CI
+on:
+  # - pull_request
+  - push
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    name: build example and deploy to minikbue
+    steps:
+    - uses: actions/checkout@v2
+    - name: Start minikube
+      uses: medyagh/setup-minikube@master
+    - name: Try the cluster !
+      run: kubectl get pods -A
+    - name: Build image
+      run: |
+        export SHELL=/bin/bash
+        eval $(minikube -p minikube docker-env)
+        docker build -f ./Dockerfile -t local/example .
+        echo -n "verifying images:"
+        docker images
+    - name: Deploy to minikube
+      run: |
+        kubectl apply -f deploy-to-minikube.yaml
+    - name: Test service URLs
+      run: |
+        kubectl get pod
+        export TEST_POD=$(kubectl get pods -o=jsonpath='{range .items[*]}{"\n"}{.metadata.name}' | grep example)
+        kubectl wait --for=condition=Ready pod/$TEST_POD
+        kubectl get pod
+        minikube service list
+        minikube service example --url
+        echo "------------------opening the service------------------"
+        echo $(minikube service example --url)
+        curl $(minikube service example --url)
