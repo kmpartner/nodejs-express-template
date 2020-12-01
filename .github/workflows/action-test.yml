@@ -18,9 +18,9 @@ jobs:
       - name: Build the tagged Docker image
         run: docker build . --file Dockerfile --tag kmpartner/nodejs-express-template
       - name: Crate container
-        run: docker run -d -p 4000:4000 kmpartner/nodejs-express-template
+        run: docker run -d -p 4000:4000 --name node-test kmpartner/nodejs-express-template
       - name: Test
-        run: docker ps && curl 0.0.0.0:4000
+        run: docker inspect node-test
 
 # jobs:
 #   job1:
