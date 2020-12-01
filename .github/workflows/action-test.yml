@@ -16,7 +16,7 @@ jobs:
       - name: echo
         run: echo ${{steps.vars.outputs.tag}}
       - name: npm Start
-        run: npm start
+        run: npm install && npm start
       - name: Build Docker image
         run: docker build . --file Dockerfile --tag kmpartner/nodejs-express-template
       - name: Crate container
