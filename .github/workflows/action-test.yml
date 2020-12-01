@@ -20,7 +20,7 @@ jobs:
       - name: Crate container
         run: docker run -d -p 4000:4000 kmpartner/nodejs-express-template
       - name: Test
-        run: docker ps
+        run: docker ps && curl 0.0.0.0:4000
 
 # jobs:
 #   job1:
