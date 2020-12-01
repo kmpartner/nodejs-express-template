@@ -19,10 +19,10 @@ jobs:
       #   run: npm install && npm start
       - name: Build Docker image
         run: docker build . --file Dockerfile --tag kmpartner/nodejs-express-template
-      - name: Crate container
+      - name: Create container
         run: docker run -d -p 4000:4000 --name node-test kmpartner/nodejs-express-template
       - name: Test
-        run: docker ps
+        run: docker ps && docker logs node-test
 
 
 # jobs:
