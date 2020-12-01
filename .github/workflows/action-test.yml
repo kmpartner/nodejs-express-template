@@ -15,14 +15,15 @@ jobs:
         run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
       - name: echo
         run: echo ${{steps.vars.outputs.tag}}
-      - name: Build the tagged Docker image
+      - name: npm Start
+        run: npm start
+      - name: Build Docker image
         run: docker build . --file Dockerfile --tag kmpartner/nodejs-express-template
       - name: Crate container
         run: docker run -d -p 4000:4000 --name node-test kmpartner/nodejs-express-template
-      # - name: Test
-      #   run: docker inspect node-test
-      - name: Test2
-        run: curl 172.17.0.2:4000
+      - name: Test
+        run: docker ps
+
 
 # jobs:
 #   job1:
