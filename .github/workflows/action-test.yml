@@ -19,8 +19,10 @@ jobs:
         run: docker build . --file Dockerfile --tag kmpartner/nodejs-express-template
       - name: Crate container
         run: docker run -d -p 4000:4000 --name node-test kmpartner/nodejs-express-template
-      - name: Test
-        run: docker inspect node-test
+      # - name: Test
+      #   run: docker inspect node-test
+      - name: Test2
+        run: curl 172.17.0.2:4000
 
 # jobs:
 #   job1:
