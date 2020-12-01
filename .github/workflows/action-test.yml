@@ -8,9 +8,6 @@ jobs:
     name: build example and deploy to minikbue
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-    - run: npm install -g bats
-    - run: bats -v
     - name: Start minikube
       uses: medyagh/setup-minikube@master
     - name: Try the cluster !
