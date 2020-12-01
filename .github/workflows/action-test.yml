@@ -13,10 +13,12 @@ jobs:
       - name: Get the version
         id: vars
         run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
+      - name: echo
+        run: echo ${{steps.vars.outputs.tag}}
       - name: Build the tagged Docker image
-        run: docker build . --file Dockerfile --tag kmpartner/nodejs-express-template:${{steps.vars.outputs.tag}}
+        run: docker build . --file Dockerfile --tag kmpartner/nodejs-express-template
       - name: Crate container
-        run: docker run -p 4000:4000 kmpartner/nodejs-express-template:${{steps.vars.outputs.tag}}
+        run: docker run -d -p 4000:4000 kmpartner/nodejs-express-template
       - name: Test
         run: curl localhost:4000
 
