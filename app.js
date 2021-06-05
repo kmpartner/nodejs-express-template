@@ -9,7 +9,7 @@ const compression = require('compression');
 
 const exampleRoute = require('./routes/example');
 
-require('dotenv').config()
+require('dotenv').config();
 
 
 const app = express();
