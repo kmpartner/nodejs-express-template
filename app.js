@@ -82,7 +82,7 @@ app.use('/healthz', (req, res, next) => {
 
 app.use('/', (req, res, next) => {
     // console.log('in /xxx');
-    res.send('<h1>Hello from Express-Nodejs template/ </h1>')
+    res.send('<h1>Hello from Express-Nodejs template / </h1>')
 });
 
 app.use((error, req, res, next) => {
